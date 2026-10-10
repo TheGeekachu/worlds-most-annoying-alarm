@@ -1,0 +1,19 @@
+G04 --- HEADER BEGIN --- *
+G04 #@! TF.GenerationSoftware,LibrePCB,LibrePCB,2.1.1*
+G04 #@! TF.CreationDate,2026-10-10T12:59:52*
+G04 #@! TF.ProjectId,annoying-alarm,2a6d2053-78f6-4d19-bd06-dd99cf5d76ef,v1*
+G04 #@! TF.Part,Single*
+G04 #@! TF.SameCoordinates*
+G04 #@! TF.FileFunction,Paste,Top*
+G04 #@! TF.FilePolarity,Positive*
+%FSLAX66Y66*%
+%MOMM*%
+G01*
+G75*
+G04 --- HEADER END --- *
+G04 --- APERTURE LIST BEGIN --- *
+G04 --- APERTURE LIST END --- *
+G04 --- BOARD BEGIN --- *
+G04 --- BOARD END --- *
+G04 #@! TF.MD5,5c4e6f14f2d3f8c9ecb4c1fe6343b048*
+M02*

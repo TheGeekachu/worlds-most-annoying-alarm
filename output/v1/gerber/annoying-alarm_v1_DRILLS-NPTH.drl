@@ -1,0 +1,33 @@
+M48
+; #@! TF.GenerationSoftware,LibrePCB,LibrePCB,2.1.1
+; #@! TF.CreationDate,2026-10-10T12:59:52
+; #@! TF.ProjectId,annoying-alarm,2a6d2053-78f6-4d19-bd06-dd99cf5d76ef,v1
+; #@! TF.Part,Single
+; #@! TF.SameCoordinates
+; #@! TF.FileFunction,NonPlated,1,2,NPTH
+FMAT,2
+METRIC,TZ
+; #@! TA.AperFunction,MechanicalDrill
+T1C1.7
+; #@! TA.AperFunction,MechanicalDrill
+T2C4.0
+%
+G90
+G05
+M71
+T1
+X40.005Y27.305
+X29.845Y27.305
+X78.105Y27.305
+X67.945Y27.305
+X59.055Y27.305
+X48.895Y27.305
+X20.955Y27.305
+X10.795Y27.305
+T2
+X34.925Y27.305
+X73.025Y27.305
+X53.975Y27.305
+X15.875Y27.305
+T0
+M30

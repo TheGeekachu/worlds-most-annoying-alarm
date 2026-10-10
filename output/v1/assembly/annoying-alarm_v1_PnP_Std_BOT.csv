@@ -1,0 +1,16 @@
+# Pick&Place Position Data File
+#
+# Project Name:        annoying-alarm
+# Project Version:     v1
+# Board Name:          default
+# Generation Software: LibrePCB 2.1.1
+# Generation Date:     2026-10-10T12:59:52
+# Unit:                mm
+# Rotation:            Degrees CCW
+# Board Side:          Bottom
+# Assembly Types:      THT, SMT, THT+SMT, Fiducial, Other
+
+Designator,Value,Device,Package,Position X,Position Y,Rotation,Side,Type
+BZ2,Buzzer (Buzzer_12x9.5RM7.6),Buzzer (Buzzer_12x9.5RM7.6),Buzzer_12x9.5RM7.6,74.93,40.005,90.0,Bottom,THT
+J1,,Generic Pin Socket 2.54mm 1x08 ⌀0.9mm,Pin Socket 2.54mm 1x08 ⌀0.9mm,19.685,40.005,90.0,Bottom,THT
+U1,XIAO-ESP32-C3-SMD (XIAO-ESP32-C3-SMD),XIAO-ESP32-C3-SMD (XIAO-ESP32-C3-SMD),XIAO-ESP32-C3-DIP,44.45,47.625,90.0,Bottom,SMT

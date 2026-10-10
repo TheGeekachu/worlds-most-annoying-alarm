@@ -1,0 +1,17 @@
+# Pick&Place Position Data File
+#
+# Project Name:        annoying-alarm
+# Project Version:     v1
+# Board Name:          default
+# Generation Software: LibrePCB 2.1.1
+# Generation Date:     2026-10-10T12:59:52
+# Unit:                mm
+# Rotation:            Degrees CCW
+# Board Side:          Top
+# Assembly Types:      THT, SMT, THT+SMT, Fiducial, Other
+
+Designator,Value,Device,Package,Position X,Position Y,Rotation,Side,Type
+SW2,SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Cherry_MX_1.00u_PCB,75.565,32.385,0.0,Top,THT
+SW3,SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Cherry_MX_1.00u_PCB,56.515,32.385,0.0,Top,THT
+SW4,SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Cherry_MX_1.00u_PCB,37.465,32.385,0.0,Top,THT
+SW5,SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Push (SW_Cherry_MX_1.00u_PCB),SW_Cherry_MX_1.00u_PCB,18.415,32.385,0.0,Top,THT
