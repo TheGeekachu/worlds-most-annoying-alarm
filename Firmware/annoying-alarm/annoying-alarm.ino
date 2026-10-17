@@ -18,8 +18,12 @@
 #define KEYFOUR 0
 #define BUZZER 7
 
-const char* ssid     = "Sarvaani"; // Replace with your own Wifi name
-const char* password = "Master9494194535"; // Replace with your own Wifi password (Shhh don't look at mine)
+const char* ssid     = "Sarvaani";
+const char* password = "Master9494194535";
+
+const char* ntpServer = "pool.ntp.org";
+const long  gmtOffset_sec = 19800;
+const int   daylightOffset_sec = 0;
 
 const char* insults[] = {
   "Wake up, ya lazy lug!",
@@ -33,7 +37,7 @@ const char* insults[] = {
   "I give up. You're just an idiot. I'm sorry.",
   "Practice your flute, your alarm sounds better than your flute does!",
 };
-const int totalInsults = 6;
+const int totalInsults = 10;
 
 class MyST7789 : public Adafruit_ST7789 {
 public:
@@ -48,6 +52,7 @@ public:
 MyST7789 tft(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCLK, TFT_RST);
 
 bool alarmTriggered = false;
+int lastAlarmDay = -1;
 
 String formatTwoDigits(int number) {
   if (number < 10) return "0" + String(number);
@@ -142,8 +147,9 @@ void loop() {
   }
   tft.print(timeString);
 
-  if (timeString == "06:00:00") {
+  if (hour() == 6 && minute() == 0 && second() == 0 && lastAlarmDay != day()) {
     alarmTriggered = true;
+    lastAlarmDay = day();
     displayInsult();
   }
 
@@ -170,5 +176,3 @@ void loop() {
     delay(100);
   }
 }
-
-
