@@ -2,6 +2,32 @@
 
 ## Description
 
+This is the World's Most Annoying Alarm, made with Onshape, LibrePCB, and a lot of pain. It is an alarm clock designed to blare like a siren in the morning and display insults on the screen every few seconds till you wake up. It has 4 buttons, one for turning off the alarm, one for insulting you during the day if you feel like it, and two unprogrammed ones. All firmware is open source, so you can adjust the insults, and changes will be continually made to the official firmware. Has a TFT screen for displaying insults and all 4 buttons are high-quality mechanical keyboard buttons hat are very satisfying to play with.
+
+## Features and Parts:
+
+* Full-color TFT to display insults
+* Very loud buzzer to wake you up.
+* USB-C powered ESP32 microcontroller for running the firmware
+* Well-designed aesthetically pleasing case for when you get made at it and throw it off the balcony
+* 4 very clacky ASMR keys for pressing and stuff
+* Several custom-made premium insults in the official firmware
+* Overall, one very annoying alarm clock.
+* 3D printable case so you can make a replacement if you have a very high balcony
+* Full BOM not including case material in the production files.
+
+## Issues and Frustrations I've had:
+
+* Continual review process and logging hours
+* Figuring out differences between KiCAD and LibrePCB
+* Firmware, it's been a while since I've used Arduino for something this complicated, might switch the firmware to CircuitPython.
+* LibrePCB not having pre-installed footprints that I need, so going hunting in the official KiCAD repo on GitLab.
+* Neither Libre nor KiCAD having the 3D models, so going on GrabCAD for models.
+* Schoolwork while doing all this stuff.
+* Writing this README. (The Hardest Part!!!!!!)
+
+## Devlogs
+
 **Devlog 1**
 
 This is a [LibrePCB](https://librepcb.org) project!
