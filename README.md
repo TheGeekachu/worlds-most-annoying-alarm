@@ -41,6 +41,12 @@ Okay, so I finished the CAD work as well, I'm putting the CAD file in the root f
 
 Finished firmware, CAD is in CAD folder, firmware is in Firmware folder, and the actual Gerber files and PCB stuff is in the PCB folder. The alarm stops with a press of the left key, and the clock insults you with the second key. Every time it BLAREs, it also insults you. Apart from that, it's a normal clock that displays the time. FIrmware is still a WIP, I need to code the other keys, but thanks for being here!
 
+## Pictures! 
+![alt text](FinishedCADforMostAnnoyingAlarmClock.png)
+![alt text](AnnoyingAlarmFIrmware.png)
+![alt text](AnnoyingAlarm3d1.png)
+![alt text](AnnoyingAlarm3d2.png)
+![alt text](AnnoyingAlarmScheme.png)
 
 ## License
 
