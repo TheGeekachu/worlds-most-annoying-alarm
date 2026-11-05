@@ -2,7 +2,7 @@
 
 ## Description
 
-This is the World's Most Annoying Alarm, made with Onshape, LibrePCB, and a lot of pain. It is an alarm clock designed to blare like a siren in the morning and display insults on the screen every few seconds till you wake up. It has 4 buttons, one for turning off the alarm, one for insulting you during the day if you feel like it, and two unprogrammed ones. All firmware is open source, so you can adjust the insults, and changes will be continually made to the official firmware. Has a TFT screen for displaying insults and all 4 buttons are high-quality mechanical keyboard buttons hat are very satisfying to play with.
+This is the World's Most Annoying Alarm, made with Onshape, LibrePCB, and a lot of pain. It is an alarm clock designed to blare like a siren in the morning and display insults on the screen every few seconds till you wake up. It has 4 buttons, one for turning off the alarm, one for insulting you during the day if you feel like it, and two unprogrammed ones. All firmware is open source, so you can adjust the insults, and changes will be continually made to the official firmware. Has a TFT screen for displaying insults and all 4 buttons are high-quality mechanical keyboard buttons that are very satisfying to play with.
 
 ## Features and Parts:
 
