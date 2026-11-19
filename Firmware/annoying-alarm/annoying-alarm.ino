@@ -3,27 +3,24 @@
 #include <SPI.h>
 #include <WiFi.h>
 #include <time.h>
-#include <TimeLib.h>
 
-#define TFT_SCLK 9
-#define TFT_MOSI 10
-#define TFT_RST 8
-#define TFT_DC 4
-#define TFT_CS 5
-#define TFT_BL 6
+#define TFT_SCLK D9
+#define TFT_MOSI D10
+#define TFT_RST  D8
+#define TFT_DC   D4
+#define TFT_CS   D5
+#define TFT_BL   D6
 
-#define KEYONE 3
-#define KEYTWO 2
-#define KEYTHREE 1
-#define KEYFOUR 0
-#define BUZZER 7
+#define KEYONE   D3
+#define KEYTWO   D2
+#define BUZZER   D7 
 
 const char* ssid     = "Sarvaani";
 const char* password = "Master9494194535";
 
 const char* ntpServer = "pool.ntp.org";
-const long  gmtOffset_sec = 19800;
-const int   daylightOffset_sec = 0;
+const long  gmtOffset_sec = -28800;
+const int   daylightOffset_sec = 3600;
 
 const char* insults[] = {
   "Wake up, ya lazy lug!",
@@ -35,7 +32,7 @@ const char* insults[] = {
   "Get up and do your homework like a man!",
   "Dude, your RSM teacher's gonna kill you.",
   "I give up. You're just an idiot. I'm sorry.",
-  "Practice your flute, your alarm sounds better than your flute does!",
+  "Practice your flute, your alarm sounds better than your flute does!"
 };
 const int totalInsults = 10;
 
@@ -54,20 +51,8 @@ MyST7789 tft(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCLK, TFT_RST);
 bool alarmTriggered = false;
 int lastAlarmDay = -1;
 
-String formatTwoDigits(int number) {
-  if (number < 10) return "0" + String(number);
-  return String(number);
-}
-
-void playSiren() {
-  for (int hz = 400; hz < 1200; hz += 15) {
-    tone(BUZZER, hz);
-    delay(4);
-  }
-  for (int hz = 1200; hz > 400; hz -= 15) {
-    tone(BUZZER, hz);
-    delay(4);
-  }
+void triggerBuzzer(bool state) {
+  digitalWrite(BUZZER, state ? HIGH : LOW);
 }
 
 void displayInsult() {
@@ -82,97 +67,112 @@ void displayInsult() {
 
 void setup() {
   Serial.begin(115200);
+  delay(500);
+
   pinMode(TFT_BL, OUTPUT);
   pinMode(BUZZER, OUTPUT);
   pinMode(KEYONE, INPUT_PULLUP);
   pinMode(KEYTWO, INPUT_PULLUP);
   
-  digitalWrite(TFT_BL, LOW); 
-  noTone(BUZZER);
-  
+  digitalWrite(TFT_BL, LOW);
+  triggerBuzzer(false);
+
+  SPI.begin(TFT_SCLK, -1, TFT_MOSI, TFT_CS);
   tft.init(76, 284);
   tft.setOffsets(82, 18);
-  tft.invertDisplay(false);
   tft.setRotation(1);
+  tft.invertDisplay(false);
   tft.fillScreen(ST77XX_BLACK);
-  
-  tft.setCursor(10, 20);
-  tft.setTextSize(2);
-  tft.setTextColor(ST77XX_WHITE);
-  tft.print("Connecting WiFi...");
-  
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  
-  tft.fillScreen(ST77XX_BLACK);
-  tft.setCursor(10, 20);
-  tft.print("Syncing Time...");
-  
-  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-  
-  struct tm timeinfo;
-  if (getLocalTime(&timeinfo)) {
-    setTime(timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec, timeinfo.tm_mday, timeinfo.tm_mon + 1, timeinfo.tm_year + 1900);
-  }
-  
-  randomSeed(analogRead(A0) + millis());
-  
-  tft.fillScreen(ST77XX_BLACK);
-  tft.setCursor(20, 10);
+
+  // Header Title
+  tft.setCursor(5, 5);
+  tft.setTextSize(1);
+  tft.setTextColor(ST77XX_YELLOW);
+  tft.print("World's Most Annoying Alarm Clock");
+
+  tft.setCursor(5, 20);
   tft.setTextSize(1);
   tft.setTextColor(ST77XX_WHITE);
-  tft.print("ALARM SET: 06:00:00");
+  tft.print("Connecting WiFi...");
+
+  WiFi.begin(ssid, password);
+  int attempts = 0;
+  while (WiFi.status() != WL_CONNECTED && attempts < 15) {
+    delay(500);
+    Serial.print(".");
+    attempts++;
+  }
+
+  tft.fillRect(5, 20, 250, 15, ST77XX_BLACK);
+  tft.setCursor(5, 20);
+  tft.print("Syncing NTP Time...");
+
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  struct tm timeinfo;
+  int retry = 0;
+  while (!getLocalTime(&timeinfo) && retry < 10) {
+    delay(500);
+    retry++;
+  }
+
+  randomSeed(analogRead(A0) + millis());
+
+  tft.fillRect(0, 20, 284, 40, ST77XX_BLACK);
 }
 
 void loop() {
   if (digitalRead(KEYTWO) == LOW) {
     displayInsult();
-    delay(200);
+    delay(250);
   }
 
-  String timeString = formatTwoDigits(hour()) + ":" + 
-                      formatTwoDigits(minute()) + ":" + 
-                      formatTwoDigits(second());
-  
-  tft.setCursor(20, 25);
-  tft.setTextSize(4);
-  
-  if (alarmTriggered) {
-    tft.setTextColor(ST77XX_BLACK, ST77XX_RED);
-  } else {
-    tft.setTextColor(ST77XX_RED, ST77XX_BLACK);
-  }
-  tft.print(timeString);
-
-  if (hour() == 6 && minute() == 0 && second() == 0 && lastAlarmDay != day()) {
-    alarmTriggered = true;
-    lastAlarmDay = day();
-    displayInsult();
-  }
-
-  if (alarmTriggered) {
-    unsigned long startTime = millis();
-    while (millis() - startTime < 5000) {
-      if (digitalRead(KEYTWO) == LOW) {
-        displayInsult();
-        delay(200);
-      }
-      playSiren();
-      if (digitalRead(KEYONE) == LOW) {
-        alarmTriggered = false;
-        noTone(BUZZER);
-        tft.fillRect(0, 65, 284, 11, ST77XX_BLACK);
-        break;
-      }
-    }
-    noTone(BUZZER);
+  struct tm timeinfo;
+  if (getLocalTime(&timeinfo)) {
+    char timeBuffer[9];
+    sprintf(timeBuffer, "%02d:%02d:%02d", timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec);
+    
+    tft.setCursor(20, 25);
+    tft.setTextSize(3);
+    
     if (alarmTriggered) {
-      delay(1000);
+      tft.setTextColor(ST77XX_BLACK, ST77XX_RED);
+    } else {
+      tft.setTextColor(ST77XX_RED, ST77XX_BLACK);
     }
-  } else {
-    delay(100);
+    tft.print(timeBuffer);
+
+    if (timeinfo.tm_hour == 6 && timeinfo.tm_min == 0 && timeinfo.tm_sec == 0 && lastAlarmDay != timeinfo.tm_mday) {
+      alarmTriggered = true;
+      lastAlarmDay = timeinfo.tm_mday;
+      displayInsult();
+    }
+
+    if (alarmTriggered) {
+      unsigned long startTime = millis();
+      while (millis() - startTime < 5000) {
+        if (digitalRead(KEYTWO) == LOW) {
+          displayInsult();
+          delay(250);
+        }
+        
+        triggerBuzzer(true);
+        delay(150);
+        triggerBuzzer(false);
+        delay(150);
+        
+        if (digitalRead(KEYONE) == LOW) {
+          alarmTriggered = false;
+          triggerBuzzer(false);
+          tft.fillRect(0, 65, 284, 11, ST77XX_BLACK);
+          break;
+        }
+      }
+      triggerBuzzer(false);
+      if (alarmTriggered) {
+        delay(1000);
+      }
+    }
   }
+  
+  delay(100);
 }
