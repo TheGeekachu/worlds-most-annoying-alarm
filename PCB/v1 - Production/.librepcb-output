@@ -1,0 +1,13 @@
+annoying-alarm_v1.lppz | 5a33e582-e8b5-41c6-9da2-367362a3096e
+assembly/annoying-alarm_v1_BOM_Std.csv | dd0a7ae1-a10e-41fa-83be-8f2357f4c6e6
+gerber/annoying-alarm_v1_COPPER-BOTTOM.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_COPPER-TOP.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_DRILLS-NPTH.drl | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_DRILLS-PTH.drl | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_OUTLINES.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_SILKSCREEN-BOTTOM.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_SILKSCREEN-TOP.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_SOLDERMASK-BOTTOM.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_SOLDERMASK-TOP.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_SOLDERPASTE-BOTTOM.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9
+gerber/annoying-alarm_v1_SOLDERPASTE-TOP.gbr | e26c5758-c932-4ab4-b99c-0477c772a6c9

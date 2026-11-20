@@ -13,6 +13,7 @@
 
 #define KEYONE   D3
 #define KEYTWO   D2
+#define KEYTHREE D1
 #define BUZZER   D7 
 
 const char* ssid     = "Sarvaani";
@@ -73,6 +74,7 @@ void setup() {
   pinMode(BUZZER, OUTPUT);
   pinMode(KEYONE, INPUT_PULLUP);
   pinMode(KEYTWO, INPUT_PULLUP);
+  pinMode(KEYTHREE, INPUT_PULLUP);
   
   digitalWrite(TFT_BL, LOW);
   triggerBuzzer(false);
@@ -124,6 +126,13 @@ void loop() {
   if (digitalRead(KEYTWO) == LOW) {
     displayInsult();
     delay(250);
+  }
+  if (digitalRead(KEYTHREE) == LOW) {
+    Serial.println("Key pressed...");
+    triggerBuzzer(true);
+    delay(150);
+    triggerBuzzer(false);
+    delay(150);
   }
 
   struct tm timeinfo;
